@@ -1,0 +1,8 @@
+[package]
+name = "wip"
+version = "0.1.0"
+authors = ["Collins Muriuki <hello@collinsmuriuki.xyz>"]
+edition = "2018"
+
+[dependencies]
+regex="1.5.4"
