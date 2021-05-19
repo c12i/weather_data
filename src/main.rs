@@ -5,7 +5,7 @@ use std::str::FromStr;
 #[derive(Debug, PartialEq, PartialOrd, Clone)]
 struct WeatherData {
     time: String,
-    temparature: f64,
+    temperature: f64,
     humidity: f64,
 }
 
@@ -18,12 +18,12 @@ impl FromStr for WeatherData {
         let re_humidity = Regex::new(r"Humidity: ([^'$]+)").unwrap();
 
         let time = re_time.captures(s).unwrap().get(1).unwrap().as_str();
-        let temparature = re_temp.captures(s).unwrap().get(1).unwrap().as_str();
+        let temperature = re_temp.captures(s).unwrap().get(1).unwrap().as_str();
         let humidity = re_humidity.captures(s).unwrap().get(1).unwrap().as_str();
 
         let data = WeatherData {
             time: time.to_string(),
-            temparature: temparature.parse().unwrap(),
+            temperature: temperature.parse().unwrap(),
             humidity: humidity.parse().unwrap(),
         };
 
@@ -44,14 +44,14 @@ fn main() {
         parsed_weather_data.push(w.clone());
 
         parsed_weather_data.sort_by(|a, b| {
-            return a.temparature.partial_cmp(&b.temparature).unwrap();
+            return a.temperature.partial_cmp(&b.temperature).unwrap();
         });
 
-        if parsed_weather_data.len() >= 2 {
-            if w.temparature >= parsed_weather_data[(parsed_weather_data.len() - 2)].temparature
-                && w.temparature < parsed_weather_data[(parsed_weather_data.len() - 1)].temparature
+        if parsed_weather_data.len() > 2 {
+            if w.temperature >= parsed_weather_data[(parsed_weather_data.len() - 2)].temperature
+                && w.temperature < parsed_weather_data[(parsed_weather_data.len() - 1)].temperature
             {
-                println!("Bye");
+                println!("Done");
                 break;
             }
         }
