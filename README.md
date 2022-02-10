@@ -1,3 +1,3 @@
-# Slight Technical Question
+# Rust parsing trial
 
 Weather data parsing and manipulation
